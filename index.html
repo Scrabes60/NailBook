@@ -4,6 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NailBook Pro - Agenda y Clientes para Nail Artists</title>
+    <script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+
+  const studio = params.get("studio") || "NailBook Pro";
+  const licencia = params.get("licencia") || "DEMO";
+
+  document.title = studio + " | Agenda Profesional";
+
+  const posiblesTitulos = [
+    "h1",
+    ".brand-title",
+    "#studio-title",
+    "#studio-name"
+  ];
+
+  posiblesTitulos.forEach(selector => {
+    const el = document.querySelector(selector);
+    if (el) el.textContent = studio;
+  });
+
+  let licenciaEl = document.getElementById("license-text");
+
+  if (!licenciaEl) {
+    licenciaEl = document.createElement("p");
+    licenciaEl.id = "license-text";
+    licenciaEl.style.fontSize = "12px";
+    licenciaEl.style.color = "#9ca3af";
+    licenciaEl.style.marginTop = "6px";
+
+    const h1 = document.querySelector("h1");
+    if (h1 && h1.parentNode) {
+      h1.parentNode.appendChild(licenciaEl);
+    }
+  }
+
+  licenciaEl.textContent = "Licencia: " + licencia;
+})();
+</script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
