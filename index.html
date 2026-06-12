@@ -4,8 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NailBook Pro - Agenda y Clientes para Nail Artists</title>
-   <script>
-(function () {
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+
+  const studio = params.get("studio") || "NailBook Pro";
+  const licencia = params.get("licencia") || "DEMO";
+
+  document.title = studio + " | Agenda Profesional";
+
+  // Cambia el nombre principal del sidebar.
+  const tituloSidebar = document.querySelector("aside h1");
+  if (tituloSidebar) {
+    tituloSidebar.textContent = studio;
+
+    const contenedor = tituloSidebar.parentElement;
+    if (contenedor && !document.getElementById("license-text")) {
+      const licenciaEl = document.createElement("p");
+      licenciaEl.id = "license-text";
+      licenciaEl.textContent = "Licencia: " + licencia;
+      licenciaEl.style.fontSize = "10px";
+      licenciaEl.style.color = "#EC4899";
+      licenciaEl.style.marginTop = "2px";
+      licenciaEl.style.fontWeight = "600";
+      licenciaEl.style.letterSpacing = "0.04em";
+      contenedor.appendChild(licenciaEl);
+    }
+  }
+
+  // Cambia también el nombre del encabezado móvil, si existe.
+  const mobileTitle = document.querySelector(".header-mobile .font-display");
+  if (mobileTitle) {
+    mobileTitle.textContent = studio;
+  }
+});
+</script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
